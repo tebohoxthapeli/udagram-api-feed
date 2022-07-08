@@ -19,89 +19,89 @@ spec:
           image: tebohoxthapeli/udagram-api-feed:latest
           ports:
             - containerPort: 8080
-              env:
-                - name: AWS_BUCKET
-                  valueFrom:
-                    configMapKeyRef:
-                      name: env-configmap
-                      key: AWS_BUCKET
+          env:
+            - name: AWS_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: AWS_BUCKET
 
-                - name: POSTGRES_DB
-                  valueFrom:
-                    configMapKeyRef:
-                      name: env-configmap
-                      key: POSTGRES_DB
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: POSTGRES_DB
 
-                - name: POSTGRES_HOST
-                  valueFrom:
-                    configMapKeyRef:
-                      name: env-configmap
-                      key: POSTGRES_HOST
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: POSTGRES_HOST
 
-                - name: URL
-                  valueFrom:
-                    configMapKeyRef:
-                      name: env-configmap
-                      key: URL
+            - name: URL
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: URL
 
-                - name: AWS_DEFAULT_REGION
-                  valueFrom:
-                    configMapKeyRef:
-                      name: env-configmap
-                      key: AWS_DEFAULT_REGION
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: AWS_DEFAULT_REGION
 
-                - name: AWS_REGION
-                  valueFrom:
-                    configMapKeyRef:
-                      name: env-configmap
-                      key: AWS_REGION
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: AWS_REGION
 
-                - name: AWS_PROFILE
-                  valueFrom:
-                    configMapKeyRef:
-                      name: env-configmap
-                      key: AWS_PROFILE
+            - name: AWS_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: AWS_PROFILE
 
-                - name: AWS_ACCESS_KEY_ID
-                  valueFrom:
-                    secretKeyRef:
-                      name: aws-secret
-                      key: AWS_ACCESS_KEY_ID
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: AWS_ACCESS_KEY_ID
 
-                - name: AWS_SECRET_ACCESS_KEY
-                  valueFrom:
-                    secretKeyRef:
-                      name: aws-secret
-                      key: AWS_SECRET_ACCESS_KEY
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: AWS_SECRET_ACCESS_KEY
 
-                - name: JWT_SECRET
-                  valueFrom:
-                    secretKeyRef:
-                      name: env-secret
-                      key: JWT_SECRET
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: JWT_SECRET
 
-                - name: POSTGRES_PASSWORD
-                  valueFrom:
-                    secretKeyRef:
-                      name: env-secret
-                      key: POSTGRES_PASSWORD
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRES_PASSWORD
 
-                - name: POSTGRES_USERNAME
-                  valueFrom:
-                    secretKeyRef:
-                      name: env-secret
-                      key: POSTGRES_USERNAME
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRES_USERNAME
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: udagram-api-feed-service
+  name: backend-feed
   labels:
-    service: udagram-api-feed-service
+    service: backend-feed
 spec:
   selector:
     app: udagram-api-feed
-    ports:
-      - protocol: TCP
-        port: 8080
-        targetPort: 8080
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
