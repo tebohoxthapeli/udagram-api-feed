@@ -8,7 +8,6 @@ import { config } from "./config/config";
 
 (async () => {
 	sequelize.addModels(V0_FEED_MODELS);
-
 	console.debug("Initialize database connection...");
 	await sequelize.sync();
 
