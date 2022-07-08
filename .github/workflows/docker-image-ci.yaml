@@ -12,9 +12,9 @@ jobs:
         name: Check out code.
 
       - uses: mr-smithers-excellent/docker-build-push@v5
-        name: Build and push Docker image.
+        name: Build and push API feed Docker image.
         with:
-          image: tebohoxthapeli/udagram-reverseproxy
+          image: tebohoxthapeli/udagram-api-feed
           tags: latest
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
