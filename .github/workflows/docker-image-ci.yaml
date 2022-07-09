@@ -15,7 +15,7 @@ jobs:
         name: Build and push API feed Docker image.
         with:
           image: tebohoxthapeli/udagram-api-feed
-          tags: latest
+          tags: v1.2.0
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}

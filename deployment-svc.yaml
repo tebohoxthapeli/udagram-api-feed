@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-api-feed
+  name: backend-feed
   labels:
-    app: udagram-api-feed
+    app: backend-feed
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: udagram-api-feed
+      app: backend-feed
   template:
     metadata:
       labels:
-        app: udagram-api-feed
+        app: backend-feed
     spec:
       containers:
         - name: backend-feed
-          image: tebohoxthapeli/udagram-api-feed:latest
+          image: tebohoxthapeli/udagram-api-feed:v1.2.0
           ports:
             - containerPort: 8080
           env:
@@ -100,7 +100,8 @@ metadata:
     service: backend-feed
 spec:
   selector:
-    app: udagram-api-feed
+    app: backend-feed
   ports:
     - port: 8080
       targetPort: 8080
+      protocol: TCP
