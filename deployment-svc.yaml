@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend-feed
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: backend-feed
@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
         - name: backend-feed
-          image: tebohoxthapeli/backend-feed:v1
+          image: tebohoxthapeli/backend-feed:v2
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           env:
             - name: AWS_BUCKET
               valueFrom:
@@ -97,5 +97,5 @@ spec:
     app: backend-feed
   ports:
     - port: 8080
-      targetPort: 80
+      targetPort: 8080
       protocol: TCP
