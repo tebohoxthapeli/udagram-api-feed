@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
         - name: backend-feed
-          image: tebohoxthapeli/udagram-api-feed:v1.2.1
+          image: tebohoxthapeli/backend-feed:v1
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           env:
             - name: AWS_BUCKET
               valueFrom:
@@ -44,12 +44,6 @@ spec:
                   name: env-configmap
                   key: URL
 
-            - name: AWS_DEFAULT_REGION
-              valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: AWS_DEFAULT_REGION
-
             - name: AWS_REGION
               valueFrom:
                 configMapKeyRef:
@@ -62,17 +56,17 @@ spec:
                   name: env-configmap
                   key: AWS_PROFILE
 
-            - name: AWS_ACCESS_KEY_ID
+            - name: aws_access_key_id
               valueFrom:
                 secretKeyRef:
                   name: aws-secret
-                  key: AWS_ACCESS_KEY_ID
+                  key: aws_access_key_id
 
-            - name: AWS_SECRET_ACCESS_KEY
+            - name: aws_secret_access_key
               valueFrom:
                 secretKeyRef:
                   name: aws-secret
-                  key: AWS_SECRET_ACCESS_KEY
+                  key: aws_secret_access_key
 
             - name: JWT_SECRET
               valueFrom:
@@ -103,5 +97,5 @@ spec:
     app: backend-feed
   ports:
     - port: 8080
-      targetPort: 8080
+      targetPort: 80
       protocol: TCP
