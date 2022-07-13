@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend-feed
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: backend-feed
@@ -14,11 +14,21 @@ spec:
       labels:
         app: backend-feed
     spec:
+      restartPolicy: Always
+      volumes:
+        - name: aws-secret
+          secret:
+            secretName: aws-secret
       containers:
         - name: backend-feed
-          image: tebohoxthapeli/backend-feed:v2
+          image: tebohoxthapeli/backend-feed:v3
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          volumeMounts:
+            - name: aws-secret
+              mountPath: "/root/.aws/"
+              readOnly: true
           env:
             - name: AWS_BUCKET
               valueFrom:
@@ -55,18 +65,6 @@ spec:
                 configMapKeyRef:
                   name: env-configmap
                   key: AWS_PROFILE
-
-            - name: aws_access_key_id
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secret
-                  key: aws_access_key_id
-
-            - name: aws_secret_access_key
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secret
-                  key: aws_secret_access_key
 
             - name: JWT_SECRET
               valueFrom:
