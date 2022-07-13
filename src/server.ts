@@ -22,6 +22,7 @@ import { config } from "./config/config";
 			allowedHeaders: [
 				"Origin",
 				"X-Requested-With",
+				"Access-Control-Allow-Origin",
 				"Content-Type",
 				"Accept",
 				"X-Access-Token",
