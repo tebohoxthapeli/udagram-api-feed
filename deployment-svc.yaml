@@ -21,7 +21,7 @@ spec:
             secretName: aws-secret
       containers:
         - name: backend-feed
-          image: tebohoxthapeli/backend-feed:v4
+          image: tebohoxthapeli/backend-feed:v5
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

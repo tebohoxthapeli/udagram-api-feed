@@ -17,22 +17,24 @@ import { config } from "./config/config";
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
 
-	app.use(
-		cors({
-			allowedHeaders: [
-				"Origin",
-				"X-Requested-With",
-				"Access-Control-Allow-Origin",
-				"Content-Type",
-				"Accept",
-				"X-Access-Token",
-				"Authorization",
-			],
-			methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
-			preflightContinue: true,
-			origin: "*",
-		})
-	);
+	app.use(cors());
+
+	// app.use(
+	// 	cors({
+	// 		allowedHeaders: [
+	// 			"Origin",
+	// 			"X-Requested-With",
+	// 			"Access-Control-Allow-Origin",
+	// 			"Content-Type",
+	// 			"Accept",
+	// 			"X-Access-Token",
+	// 			"Authorization",
+	// 		],
+	// 		methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+	// 		preflightContinue: true,
+	// 		origin: "*",
+	// 	})
+	// );
 
 	app.use("/api/v0/", IndexRouter);
 
