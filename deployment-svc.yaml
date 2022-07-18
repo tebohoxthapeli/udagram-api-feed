@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend-feed
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: backend-feed
@@ -21,10 +21,15 @@ spec:
             secretName: aws-secret
       containers:
         - name: backend-feed
-          image: tebohoxthapeli/backend-feed:v5
+          image: tebohoxthapeli/backend-feed:v6
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 250m
           volumeMounts:
             - name: aws-secret
               mountPath: "/root/.aws/"
